@@ -1,43 +1,45 @@
-Perfect 👍 Thanks for the details. I’ll draft a **README.md** for your first project (`project-01` in `DockerPractice`) — clear, short, but with **all the essential commands and explanations**.
+Got it 👍 I’ll simplify the README as you said:
 
-Here’s the file:
+* Remove the Dockerfile section (since it’s already in the folder).
+* Remove the last “repeat for future projects” section.
+* Emphasize **port mapping rules** (any external port → internal port 80).
+* Mention **security group inbound rule** for EC2/VM explicitly.
+
+Here’s the updated **README.md**:
 
 ````markdown
 # Project 01 – Static Website with Apache HTTP Server
 
 This project demonstrates how to containerize a simple static website (4–5 HTML pages) using **Apache HTTP Server** with Docker.
 
-## Dockerfile
-```dockerfile
-FROM httpd:2.4.54-alpine
-COPY . /usr/local/apache2/htdocs/
-````
-
 ---
 
 ## Build the Docker Image
 
-Use the following command to build the image.
+Use the following command to build the image.  
 Make sure to replace **your-dockerhub-username** with your actual DockerHub username.
 
 ```bash
 docker build -t your-dockerhub-username/dockerpractice-project01:1.0 .
-```
+````
 
 ---
 
 ## Run the Container
 
-Run the container by mapping any **external port** on your machine/VM to the **internal port 80** (Apache default).
+Run the container by mapping **any external port** on your machine/VM to the **internal port 80** (Apache default).
 
-Example (using port `8080` on the host):
+Example (using external port `8080`):
 
 ```bash
 docker run -d -p 8080:80 --name static-site your-dockerhub-username/dockerpractice-project01:1.0
 ```
 
-* `8080:80` → Maps **host port 8080** to **container port 80**
-* You can replace `8080` with any free port (e.g., 3000, 5000, 9000, etc.)
+### Important Notes about Ports
+
+* Internal port is always **80** (required by Apache/HTTPD inside container).
+* External port can be **any free port** (e.g., 3000, 4000, 5000).
+* Format: `external_port:80`
 
 ---
 
@@ -48,7 +50,7 @@ docker run -d -p 8080:80 --name static-site your-dockerhub-username/dockerpracti
 
 * **On EC2 / VM:**
   Open browser → `http://<your-public-ip>:8080`
-  (Make sure the security group / firewall allows inbound traffic on the chosen port)
+  ⚠️ Make sure your **security group / firewall inbound rule** allows the chosen external port (e.g., 8080).
 
 ---
 
@@ -63,13 +65,21 @@ docker push your-dockerhub-username/dockerpractice-project01:1.0
 
 ---
 
-✅ You now have a Dockerized static website running with Apache.
-You can repeat the same pattern for future projects with different ports and configurations.
+## Stop and Remove Container (Cleanup)
+
+To stop the running container:
+
+```bash
+docker stop static-site
+```
+
+To remove it:
+
+```bash
+docker rm static-site
+```
 
 ```
 
 ---
-
-Do you want me to also **add a section about stopping/removing containers** (for cleanup), or keep it focused only on build/run/push?
-```
 
