@@ -1,5 +1,4 @@
 
-````markdown
 # Project 01 – Static Website with Apache HTTP Server
 
 This project demonstrates how to containerize a simple static website (4–5 HTML pages) using **Apache HTTP Server** with Docker.
@@ -69,8 +68,6 @@ To remove it:
 
 ```bash
 docker rm static-site
-```
-
 ```
 
 ---
