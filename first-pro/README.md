@@ -1,11 +1,3 @@
-Got it 👍 I’ll simplify the README as you said:
-
-* Remove the Dockerfile section (since it’s already in the folder).
-* Remove the last “repeat for future projects” section.
-* Emphasize **port mapping rules** (any external port → internal port 80).
-* Mention **security group inbound rule** for EC2/VM explicitly.
-
-Here’s the updated **README.md**:
 
 ````markdown
 # Project 01 – Static Website with Apache HTTP Server
